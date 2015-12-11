@@ -142,7 +142,7 @@
 
     // Default task(s).
     grunt.registerTask('reset', ['clean:all']);
-    grunt.registerTask('prod', ['ts', 'closure-compiler', 'htmlmin', 'copy', 'replace:dist',  'uglify', 'inline']);
+    grunt.registerTask('prod', ['ts', 'copy', 'replace:dist']);
     grunt.registerTask('dist', ['prod', 'clean:js', 'zip:dist', 'clean:dist']);
     grunt.registerTask('default', ['ts']);
 
