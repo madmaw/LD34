@@ -79,23 +79,12 @@
         copy: {
             dist: {
                 files: [
-                    { expand: true, src: ['lib/*.min.js'], dest: 'dist/' }
+                    { expand: true, src: ['lib/*.js'], dest: 'dist/' },
+                    { expand: true, src: ['build/*.js'], dest: 'dist/' },
+                    { src: 'index.html', dest: 'dist/index.html' }
                     //{ expand: true, src: ['res/**/*'], dest: 'dist/' }
                 ]
             }
-        },
-        replace: {
-            dist: {
-                src: ['dist/*.html'],
-                overwrite: true,                 // overwrite matched source files
-                replacements: [{
-                    from: /build\/out/g,
-                    to: "out"
-                }, {
-                    from: /.js/g,
-                    to: ".min.js"
-                }]
-            },
         },
         zip: {
             dist: {
@@ -142,7 +131,7 @@
 
     // Default task(s).
     grunt.registerTask('reset', ['clean:all']);
-    grunt.registerTask('prod', ['ts', 'copy', 'replace:dist']);
+    grunt.registerTask('prod', ['ts', 'copy']);
     grunt.registerTask('dist', ['prod', 'clean:js', 'zip:dist', 'clean:dist']);
     grunt.registerTask('default', ['ts']);
 
