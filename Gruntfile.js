@@ -22,67 +22,13 @@
             dist: ["dist"],
             js: ["dist/*.js"]
         },
-        uglify: {
-            options: {
-                mangle: true,
-                compress: true,
-                drop_console: true
-            },
-            dist: {
-                files: {
-                    //'dist/out.min.js': ['build/out.js'],
-                    'dist/lib/analytics.min.js': ['lib/analytics.js']
-                }
-            }
-        },
-        'closure-compiler': {
-            dist: {
-                closurePath: 'libbuild/closure-compiler',
-                js: 'build/out.js',
-                jsOutputFile: 'dist/out.min.js',
-                maxBuffer: 500,
-                reportFile: 'closure.txt',
-                options: {
-                    compilation_level: 'ADVANCED_OPTIMIZATIONS',
-                    language_in: 'ECMASCRIPT5'
-                }
-            }
-        },
-        inline: {
-            js: {
-                src: 'dist/index.html',
-                dest: 'dist/index.html'
-            }
-        },
-        htmlmin: {                                     
-            options: {
-                removeComments: true,
-                collapseWhitespace: true,
-                removeAttributeQuotes: true,
-                minifyCSS: true
-            },
-            dist: {
-                files: {                               
-                    'dist/index.html': 'index.html'
-                }
-            }
-        },
-        cssmin: {
-            options: {
-            },
-            dist: {
-                files: {
-                    'dist/app.css': ['app.css']
-                }
-            }
-        },
         copy: {
             dist: {
                 files: [
                     { expand: true, src: ['lib/*.js'], dest: 'dist/' },
                     { expand: true, src: ['build/*.js'], dest: 'dist/' },
+                    { expand: true, src: ['res/**/*'], dest: 'dist/' },
                     { src: 'index.html', dest: 'dist/index.html' }
-                    //{ expand: true, src: ['res/**/*'], dest: 'dist/' }
                 ]
             }
         },
@@ -110,14 +56,6 @@
 
     // clean
     grunt.loadNpmTasks('grunt-contrib-clean');
-    // Load the plugin that provides the "uglify" task.
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    // load the plugin that provides the closure compiler
-    grunt.loadNpmTasks('grunt-closure-compiler');
-    // load the plugin that provides the htmlmin task
-    grunt.loadNpmTasks('grunt-contrib-htmlmin');
-    // load the plugin that provides the cssmin task
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
     // Load the plugin that provides the "TS" task.
     grunt.loadNpmTasks('grunt-ts');
     // zip
